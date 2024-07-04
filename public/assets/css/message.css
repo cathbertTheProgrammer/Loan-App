@@ -1,0 +1,56 @@
+.messaga {
+
+    width: 40%;
+    margin: 0em auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+  
+    .alert-danger {
+      color: #7f3737;
+      background-color: #fde1e1;
+      border-color: #fcd5d5;
+      text-align: center;
+    }
+    
+    .alert-info {
+      color: #2a567d;
+      background-color: #dcedfc;
+      border-color: #cee6fb;
+      text-align: center;
+    }
+    .alert-success {
+      color: #1b654a;
+      background-color: #d6f3e9;
+      border-color: #c6eee0;
+      text-align: center;
+    }
+    
+    .alert {
+      position: relative;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+     
+    }
+  
+  
+    @media(max-width: 1000px){
+      .messaga {
+        width: 55%;
+      }
+  
+    }
+  
+    @media(max-width: 700px){
+      .messaga{
+        width: 75%;
+      }
+    }
+  
+    @media(max-width: 560px){
+      .messaga {
+        width: 90%;
+      }
+    }
