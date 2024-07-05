@@ -1,5 +1,7 @@
 <x-website-layout>
-
+    @php
+        $googleMapsKey = config('services.google_maps.key');
+    @endphp
 
     <!-- Inner Banner _____________________ -->
     <div class="inner_banner">
@@ -118,7 +120,7 @@
         <div style="max-width:100%;list-style:none; transition: none;overflow:hidden;width:1900px;height:474px;">
             <div id="display-google-map" style="height:100%; width:100%;max-width:100%;"><iframe
                     style="height:100%;width:100%;border:0;" frameborder="0"
-                    src="https://www.google.com/maps/embed/v1/place?q=PLOT+1,+KALABO+COURT+,+RHODESPARK,+LUSAKA,+ZAMBIA&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
+                    src="https://www.google.com/maps/embed/v1/place?q=PLOT+1,+KALABO+COURT+,+RHODESPARK,+LUSAKA,+ZAMBIA&key={{ $googleMapsKey }}"></iframe>
             </div><a class="from-embedmap-code" href="https://www.bootstrapskins.com/themes" id="make-map-data">premium
                 bootstrap themes</a>
             <style>
