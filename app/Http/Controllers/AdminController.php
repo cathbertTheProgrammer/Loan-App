@@ -131,6 +131,33 @@ class AdminController extends Controller
             'paidLoans'
         ));
     }
+    
+    public function activeLoans()
+    {
+        $activeLoans = Loan::where('status', 'ACTIVE')->get();
+        return view('admin.active-loans', compact('activeLoans'));
+    }
+
+    public function loanHistory()
+    {
+        $allLoans = Loan::all();
+        return view('admin.loan-history', compact('allLoans'));
+    }
+
+    public function specificLoan(Loan $loan)
+    {
+        // $loan = Loan::with('assets')->find($loan->id);
+        $clientProfile = UserDetail::where('user_id', $loan->user_id)->first();
+        $nextOfKin = NextOfKin::where('user_id', $loan->user_id)->first();
+        $guarantor = Guarantor::where('user_id', $loan->user_id)->first();
+        $bankdetails = BankDetail::where('user_id', $loan->user_id)->first();
+        $monthlyIncome = MonthlyIncome::where('user_id', $loan->user_id)->first();
+
+        return view(
+            'admin.specific-loan',
+            compact('loan', 'clientProfile', 'nextOfKin', 'guarantor', 'bankdetails', 'monthlyIncome')
+        );
+    }
 
 
     public function pendingVerification()

@@ -103,7 +103,7 @@
 					<li class="menu-label">MAIN</li>
 
 					<li>
-						<a href="user-profile.html">
+						<a href="{{ route('admin.activeLoans') }}">
 							<div class="parent-icon text-success">
                                 <i class="bi bi-toggle-on"></i>
 							</div>
@@ -139,11 +139,11 @@
 					</li>
 
 					<li>
-						<a href="user-profile.html">
+						<a href="{{ route('admin.loanHistory') }}">
 							<div class="parent-icon  text-danger">
-								<i class="bi bi-x-circle"></i>
+								<i class="bi bi-hourglass-top"></i>
 							</div>
-							<div class="menu-title">Rejected Loans</div>
+							<div class="menu-title">Loan History</div>
 						</a>
 					</li>
 				@endcanany
@@ -190,7 +190,7 @@
 					</li> --}}
 				@endcanany
 
-				<li>
+				{{-- <li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-lock"></i>
 						</div>
@@ -222,7 +222,7 @@
 							</ul>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 				<li>
 					<a href="user-profile.html">
 						<div class="parent-icon"><i class="bx bx-user-circle"></i>
@@ -231,13 +231,13 @@
 					</a>
 				</li>
 
-				<li>
+				{{-- <li>
 					<a href="https://themeforest.net/user/codervent" target="_blank">
 						<div class="parent-icon"><i class="bx bx-support"></i>
 						</div>
 						<div class="menu-title">Support</div>
 					</a>
-				</li>
+				</li> --}}
 			</ul>
 			<!--end navigation-->
 		</div>
@@ -1003,8 +1003,7 @@
 			</div>
 			<hr/>
 			<h6 class="mb-0">Sidebar Colors</h6>
-			<hr/>
-			<div class="header-colors-indigators">
+			<hr/>			<div class="header-colors-indigators">
 				<div class="row row-cols-auto g-3">
 					<div class="col">
 						<div class="indigator sidebarcolor1" id="sidebarcolor1"></div>

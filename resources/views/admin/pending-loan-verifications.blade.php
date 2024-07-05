@@ -64,8 +64,8 @@
 										</div>
 									</td>
 									<td>{{ $loan->amount   }}</td>
-                                    <td>{{ $loan->period  }}</td>
-                                    <td>{{ $loan->purpose  }} Months</td>
+                                    <td>{{ $loan->period  }}Months</td>
+                                    <td>{{ $loan->purpose  }} </td>
 
 									@if ($loan->status == 'ACTIVE')
 										<td><div class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"><i class="bi bi-check-circle"></i>{{ $loan->status }}</div></td>

@@ -23,6 +23,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about', function () { return view('website.about');});
+Route::get('/services/accounting-tax', function () { return view('website.accounting_tax_services_advisory');});
+Route::get('/services/immigration', function () { return view('website.immigration_services');});
+Route::get('/services/customs-and-clearing', function () { return view('website.customs_and_clearing_services');});
+Route::get('/services/cash-advance-and-loan', function () { return view('website.cash_advance_and_loan_services');});
+Route::get('/contact', function () { return view('website.contact');});
+
 
 Route::get('/admin', function () {
     return view('admin');
@@ -93,6 +100,12 @@ Route::put('/admin/loans/{loan}/finalApproval',  [AdminController::class, 'appro
 Route::get('/admin/pending/payment',  [AdminController::class, 'payment'])->middleware(['auth', 'verified'])->name('admin.payment');
 Route::get('/admin/pending/{loan}/payment',  [AdminController::class, 'paymentView'])->middleware(['auth', 'verified'])->name('admin.paymentView');
 Route::put('/admin/loans/{loan}/payment',  [AdminController::class, 'paymentStore'])->middleware(['auth', 'verified'])->name('admin.paymentStore');
+
+
+Route::get('/admin/loans/history',  [AdminController::class, 'loanHistory'])->middleware(['auth', 'verified'])->name('admin.loanHistory');
+Route::get('/admin/loans/active',  [AdminController::class, 'activeLoans'])->middleware(['auth', 'verified'])->name('admin.activeLoans');
+Route::get('/admin/loans/{loan}/view',  [AdminController::class, 'specificLoan'])->middleware(['auth', 'verified'])->name('admin.specificLoan');
+
 
 Route::resources([
     'roles' => RoleController::class,
