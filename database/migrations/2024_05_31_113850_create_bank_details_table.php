@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('bank_name');
             $table->string('branch');
-            $table->String('account_name')->unique();
+            $table->String('account_name');
+            $table->String('account_number')->unique();
             $table->string('account_duration');
             $table->boolean('active_loan')->default(false);
             $table->string('organisation_name')->nullable();

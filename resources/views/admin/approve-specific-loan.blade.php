@@ -139,6 +139,6 @@
     </div>
 
     @push('scripts')
-    <script src="{{ asset('assets/js/approveLoan.js') }}" ></script>
+        <script src="{{ asset('assets/js/approveLoan.js') }}" ></script>
     @endpush
 </x-admin-layout>

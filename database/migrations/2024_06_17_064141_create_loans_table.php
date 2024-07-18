@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('loan_type');
+            $table->string('bank_statements');
             $table->string('pay_slips')->nullable();
             $table->string('sales_records')->nullable();
             $table->double('amount');
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->longText('purpose');
             $table->string('status')->default('PENDING');
             $table->string('comment')->nullable();
-            $table->foreignId('approved_by')->constrained()->onDelete('cascade');
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('cascade'); // Make approved_by nullable
             $table->timestamps();
         });
     }

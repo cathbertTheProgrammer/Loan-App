@@ -31,7 +31,7 @@
                             </div>
                         </div>
 
-                        <div class="mb-3 row">
+                        <div hidden class="mb-3 row">
                             <label for="is_admin" class="col-md-4 col-form-label text-md-end text-start">Is Admin</label>
                             <div class="col-md-6">
                             <input type="text" class="form-control @error('is_admin') is-invalid @enderror" id="is_admin" name="is_admin" value="1">

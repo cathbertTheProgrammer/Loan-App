@@ -7,10 +7,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -30,6 +32,15 @@ Route::get('/services/customs-and-clearing', function () { return view('website.
 Route::get('/services/cash-advance-and-loan', function () { return view('website.cash_advance_and_loan_services');});
 Route::get('/contact', function () { return view('website.contact');});
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+Route::post('/forgot-password',[ResetPasswordController::class,'passwordEmail'])->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}',[ResetPasswordController::class,'passwoedReset'])->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password',[ResetPasswordController::class,'passwordUpdate'])->middleware('guest')->name('password.update');
 
 Route::get('/admin', function () {
     return view('admin');

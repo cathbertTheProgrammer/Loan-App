@@ -28,6 +28,7 @@
                                         <th hidden>Asset #</th>
                                         <th>Asset Description</th>
                                         <th>Serial or Registration Number</th>
+                                        <th>Asset Image</th>
                                         <th>Estimated Value</th>
                                         <th></th>
                                     </tr>
@@ -38,6 +39,7 @@
                                             <td hidden><input readonly  type="text" class="form-control" name="assets[0][id]" value="{{ $asset->id }}" required></td>
                                             <td><input disabled type="text" class="form-control" name="assets[0][description]" value="{{ $asset->description }}" required></td>
                                             <td><input disabled type="text" class="form-control" name="assets[0][serial]" value="{{ $asset->serial }}" required></td>
+                                            <td><input type="file" class="form-control" name="assets[0]assetPicture" id="assetPicture" required> </td>
                                             <td><input disabled type="number" class="form-control estimated-value" name="assets[0][value]" value="{{ $asset->value }}" required></td>
                                         
                                         </tr>
@@ -104,6 +106,7 @@
                     <tr>
                         <td><input type="text" class="form-control" name="assets[${rowIndex}][description]" required></td>
                         <td><input type="text" class="form-control" name="assets[${rowIndex}][serial]" required></td>
+                        <td><input type="file" class="form-control" name="assets[${rowIndex}][assetPicture]" required></td>
                         <td><input type="number" class="form-control estimated-value" name="assets[${rowIndex}][value]" required></td>
                         <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
                     </tr>`;

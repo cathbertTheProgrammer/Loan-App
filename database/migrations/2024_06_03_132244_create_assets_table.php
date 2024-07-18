@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('serial')->nullable();
             $table->decimal('value', 15, 2)->nullable();
             $table->string('status')->default(0);
+            $table->string('assetPicture')->nullable();
             $table->timestamps();
         });
     }

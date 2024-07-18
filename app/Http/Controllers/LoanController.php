@@ -51,6 +51,7 @@ class LoanController extends Controller
         // validate request data
         $request->validate([
             'loan_type' => 'required|string',
+            'bank_statements' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:2048',
             'pay_slips' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:2048',
             'sales_records' => 'nullable|file|mimes:jpeg,png,jpg,gif,pdf|max:2048',
             'asset_id' => 'nullable|array',
@@ -72,6 +73,10 @@ class LoanController extends Controller
                 'user_id' => auth()->user()->id,
                 'status' => 'PENDING',
             ]);
+
+            if ($request->hasFile('bank_statements')) {
+                $loan->bank_statements = $request->file('bank_statements')->store('bank_statements', 'public');
+            }
 
             if ($request->loan_type === 'payslip_related' && $request->hasFile('pay_slips')) {
                 $loan->pay_slips = $request->file('pay_slips')->store('pay_slips', 'public');

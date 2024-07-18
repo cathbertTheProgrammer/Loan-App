@@ -146,10 +146,10 @@
 
 						<li>
 							<a href="{{route('client.assets')}}"><i class='bx bx-radio-circle'></i>Assets</a>
-					</li>
-						<li> 
-							<a href="{{route('client.profile')}}"><i class='bx bx-radio-circle'></i>Supporting Documents</a>
 						</li>
+						{{-- <li> 
+							<a href="{{route('client.profile')}}"><i class='bx bx-radio-circle'></i>Supporting Documents</a>
+						</li> --}}
 						
 					</ul>
 				</li>
@@ -853,7 +853,7 @@
 					</div>
 					<div class="user-box dropdown px-3">
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="{{asset('assets/images/avatars/passport1.jpeg')}}" class="user-img" alt="user avatar">
+							<img src="{{asset('assets/images/avatars/user.png')}}" class="user-img" alt="user avatar">
 							<div class="user-info">
 								<p class="user-name mb-0">{{ auth()->user()->name }}</p>
 								<p class="designattion mb-0">Client</p>

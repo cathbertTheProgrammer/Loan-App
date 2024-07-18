@@ -10,8 +10,9 @@ use Illuminate\Http\Response;
 
 class BankDetailsController extends Controller
 {
-   
-    public function bankDetails(){
+
+    public function bankDetails()
+    {
         $user = auth()->user();
         $bankdetails = BankDetail::where('user_id', $user->id)->where('status', 1)->first();
 
@@ -30,7 +31,8 @@ class BankDetailsController extends Controller
             $request->validate([
                 'bank_name' => 'required|string',
                 'branch' => 'required|string',
-                'account_name' => 'required|string|unique:bankdetails,account_name',
+                'account_name' => 'required|string',
+                'account_number' => 'required|string|unique:bank_details,account_number',
                 'account_duration' => 'required|string',
                 'active_loan' => 'required|boolean',
                 'organisation_name' => 'nullable|string',
@@ -38,12 +40,14 @@ class BankDetailsController extends Controller
                 'total_debt' => 'nullable|string',
                 'remaining_years' => 'nullable|string',
             ]);
-    
+
+            
             // create new brand
             $bank_details_form_data_create = [
                 'bank_name' => $request->bank_name,
                 'branch' => $request->branch,
                 'account_name' => $request->account_name,
+                'account_number' => $request->account_number,
                 'account_duration' => $request->account_duration,
                 'active_loan' => $request->input('active_loan', false),
                 'organisation_name' => $request->organisation_name,
@@ -56,7 +60,7 @@ class BankDetailsController extends Controller
             $bank_details_form_data_create['status'] = 1;
 
             BankDetail::create($bank_details_form_data_create);
-    
+
             // return JSON response indicating success
             return response()->json(['message' => 'Bank Details Added Successfully'], Response::HTTP_OK);
         } catch (\Exception $e) {
@@ -64,18 +68,19 @@ class BankDetailsController extends Controller
             return response()->json(['message' => 'Error adding Bank Details Added: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 
     public function updateBankDetails(Request $request, BankDetail $bankDetail)
     {
-        
+
         try {
-            
+
             // validate request data
             $bankDetail_update_details = $request->validate([
                 'bank_name' => 'nullable|string',
                 'branch' => 'nullable|string',
                 'account_name' => 'nullable|string',
+                'account_number' => 'required|string',
                 'account_duration' => 'nullable|string',
                 'active_loan' => 'nullable|boolean',
                 'organisation_name' => 'nullable|string',
@@ -92,10 +97,11 @@ class BankDetailsController extends Controller
         } catch (\Exception $e) {
             // return JSON response indicating error
             return response()->json(['message' => 'Error updating Bank Details: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }  
+        }
     }
 
-    public function monthlyIncome(){
+    public function monthlyIncome()
+    {
         $user = auth()->user();
         $monthlyIncome = MonthlyIncome::where('user_id', $user->id)->where('status', 1)->first();
 
@@ -122,7 +128,7 @@ class BankDetailsController extends Controller
                 'total_expenses' => 'required|numeric',
                 'net_income' => 'required|numeric'
             ]);
-    
+
             // create new brand
             $monthlyIncome_form_data_create = [
                 'salary' => $request->salary,
@@ -140,7 +146,7 @@ class BankDetailsController extends Controller
             $monthlyIncome_form_data_create['status'] = 1;
 
             MonthlyIncome::create($monthlyIncome_form_data_create);
-    
+
             // return JSON response indicating success
             return response()->json(['message' => 'Monthly Income Added Successfully'], Response::HTTP_OK);
         } catch (\Exception $e) {
@@ -148,7 +154,7 @@ class BankDetailsController extends Controller
             return response()->json(['message' => 'Error adding Monthly Income A Added: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
 
     public function updateMonthlyIncome(Request $request, MonthlyIncome $monthlyIncome)
     {
@@ -178,17 +184,18 @@ class BankDetailsController extends Controller
     }
 
 
-    public function assets(){
+    public function assets()
+    {
         $user = auth()->user();
         $assets = Asset::where('user_id', $user->id)->where('status', 1)->get();
-
-        if (is_null($assets)) {
+       
+        if ($assets->isEmpty()) {
             return view('client.finance.add-assets', ['user' => $user, 'assets' => $assets]);
         } else {
             return view('client.finance.assets', ['assets' => $assets]);
         }
     }
-
+    
 
     public function storeAssets(Request $request)
     {
@@ -198,16 +205,21 @@ class BankDetailsController extends Controller
                 'assets.*.description' => 'nullable|string|max:255',
                 'assets.*.serial' => 'nullable|string|max:255',
                 'assets.*.value' => 'nullable|numeric|min:0',
+                'assets.*.assetPicture' => 'nullable|file|mimes:jpg,jpeg,png,bmp|max:2048', // Validate assetPicture if exists
             ]);
-
 
             foreach ($request->assets as $assetData) {
                 $assetData['user_id'] = auth()->user()->id;
                 $assetData['status'] = 1;
+
+                if (isset($assetData['assetPicture'])) {
+                    $file = $assetData['assetPicture'];
+                    $assetData['assetPicture'] = $file->store('asset_pictures', 'public');
+                }
+
                 Asset::create($assetData);
             }
 
-    
             // return JSON response indicating success
             return response()->json(['message' => 'Assets added successfully'], Response::HTTP_OK);
         } catch (\Exception $e) {
@@ -215,7 +227,8 @@ class BankDetailsController extends Controller
             return response()->json(['message' => 'Error adding Assets: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+
 
     public function updateAssets(Request $request)
     {
@@ -225,28 +238,43 @@ class BankDetailsController extends Controller
                 'assets.*.description' => 'nullable|string|max:255',
                 'assets.*.serial' => 'nullable|string|max:255',
                 'assets.*.value' => 'nullable|numeric|min:0',
+                'assets.*.assetPicture' => 'nullable|file|mimes:jpg,jpeg,png,bmp|max:2048', // Validate assetPicture if exists
             ]);
-           
-             // Loop through each asset data in the request
-             foreach ($request->assets as $assetData) {
+
+            // Loop through each asset data in the request
+            foreach ($request->assets as $assetData) {
                 // Check if 'id' key exists in the array
                 if (array_key_exists('id', $assetData) && !is_null($assetData['id'])) {
                     // Find the asset by its id
                     $asset = Asset::find($assetData['id']);
-                    
+
                     // Ensure the asset exists
                     if ($asset) {
+                        // Check if assetPicture is present and handle file upload
+                        if (isset($assetData['assetPicture'])) {
+                            $file = $assetData['assetPicture'];
+                            $assetData['assetPicture'] = $file->store('asset_pictures', 'public');
+                        }
+
                         // Update the asset with new details
                         $asset->update([
                             'description' => $assetData['description'],
                             'serial' => $assetData['serial'],
-                            'value' => $assetData['value']
+                            'value' => $assetData['value'],
+                            'assetPicture' => $assetData['assetPicture'] ?? $asset->assetPicture, // Retain existing picture if not updated
                         ]);
                     }
                 } else {
                     // Create a new asset
                     $assetData['user_id'] = auth()->user()->id;
                     $assetData['status'] = 1;
+
+                    // Handle file upload for new asset
+                    if (isset($assetData['assetPicture'])) {
+                        $file = $assetData['assetPicture'];
+                        $assetData['assetPicture'] = $file->store('asset_pictures', 'public');
+                    }
+
                     Asset::create($assetData);
                 }
             }

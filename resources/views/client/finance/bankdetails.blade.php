@@ -65,6 +65,13 @@
                                         <input type="text" disabled class="form-control" name="account_name" value="{{ $bankdetail->account_name }}" id="account_name" placeholder="111111/11/1" maxlength="11" oninput="formatNRC(this)">
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="account_number" class="form-label">Account Number</label>
+                                        <input type="number" class="form-control" name="account_number" value="{{ $bankdetail->account_number }}" id="account_number" placeholder="Account Numbers" required>
+                                    </div>
+                                </div>
         
                                 <div class="col-lg-6">
                                     <div class="mb-3">

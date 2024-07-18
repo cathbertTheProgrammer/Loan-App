@@ -49,6 +49,7 @@
                                         <tr>
                                             <th>Asset Description</th>
                                             <th>Serial or Registration Number</th>
+                                            <th>Asset Image</th>
                                             <th>Estimated Value</th>
                                             <th></th>
                                         </tr>
@@ -57,8 +58,8 @@
                                         <tr>
                                             <td><input type="text" class="form-control" name="assets[0][description]" required></td>
                                             <td><input type="text" class="form-control" name="assets[0][serial]" required></td>
+                                            <td><input type="file" class="form-control" name="assets[0]assetPicture" id="assetPicture" required> </td>
                                             <td><input type="number" class="form-control estimated-value" name="assets[0][value]" required></td>
-                                           
                                         </tr>
                                     </tbody>
                                     <tfoot>
@@ -70,12 +71,13 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            <button type="button" class="btn btn-success" id="addRow">Add Asset</button>
+                            <button type="button" class="btn btn-success" id="addRow">Add Asset</button>     
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-success" id="saveAssetsBtn">Save</button>
                         </div>
 
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-primary" id="saveAssetsBtn">Save</button>
-                        </div>
+                       
                     </div>
                 </form>
             </div>
@@ -105,6 +107,7 @@
                         <tr>
                             <td><input type="text" class="form-control" name="assets[${rowIndex}][description]" required></td>
                             <td><input type="text" class="form-control" name="assets[${rowIndex}][serial]" required></td>
+                            <td><input type="file" class="form-control" name="assets[${rowIndex}][assetPicture]" required></td>
                             <td><input type="number" class="form-control estimated-value" name="assets[${rowIndex}][value]" required></td>
                             <td><button type="button" class="btn btn-danger remove-row">Remove</button></td>
                         </tr>`;

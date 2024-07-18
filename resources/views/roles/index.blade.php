@@ -17,7 +17,7 @@
                     <tr>
                     <th scope="col">S#</th>
                     <th scope="col">Name</th>
-                    <th scope="col" style="width: 250px;">Action</th>
+                    <th scope="col" style="width: 300px;">Action</th>
                     </tr>
                 </thead>
                 <tbody>

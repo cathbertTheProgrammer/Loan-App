@@ -33,7 +33,7 @@
 
         <div class="card">
             <div class="card-body p-4">
-                <h5 class="card-title">Add Guarantor</h5>
+                <h5 class="card-title">Add Bank Details</h5>
                 <hr />
 
 				<form id="addBankDetailsForm" method="POST" enctype="multipart/form-data" action="{{ route('client.storeBankDetails') }}">
@@ -46,28 +46,35 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="bank_name" class="form-label">Name of Bank</label>
-                                        <input type="text" class="form-control" name="bank_name" id="bank_name">
+                                        <input type="text" class="form-control" name="bank_name" id="bank_name" required>
                                     </div>
                                 </div>
         
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="branch" class="form-label">Branch</label>
-                                        <input type="text" class="form-control" name="branch" id="branch" placeholder="Enter phone number">
+                                        <input type="text" class="form-control" name="branch" id="branch" placeholder="Enter phone number" required>
                                     </div>
                                 </div>
         
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="account_name" class="form-label">Account Name</label>
-                                        <input type="text" class="form-control" name="account_name" id="account_name" placeholder="Account Name" >
+                                        <input type="text" class="form-control" name="account_name" id="account_name" placeholder="Account Name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="account_number" class="form-label">Account Number</label>
+                                        <input type="number" class="form-control" name="account_number" id="account_number" placeholder="Account Numbers" required>
                                     </div>
                                 </div>
         
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="account_duration" class="form-label">Duration of Account with Bank (In years or months)</label>
-                                        <input type="text" class="form-control" name="account_duration" id="account_duration" placeholder="3 years or 8 months">
+                                        <input type="text" class="form-control" name="account_duration" id="account_duration" placeholder="3 years or 8 months" required>
                                     </div>
                                 </div>
         

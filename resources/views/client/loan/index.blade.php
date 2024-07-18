@@ -78,6 +78,10 @@
                                         </select>
                                     </div>
 
+                                    <div class="mb-3 mt-2 form-control">
+                                        <label for="bank_statements" class="form-label">Bank Statements (3 months)</label>
+                                        <input name="bank_statements" id="bank_statements" type="file">
+                                    </div>
 
                                     <div class="mb-3">
                                         <label for="amount" class="form-label">Amount</label>

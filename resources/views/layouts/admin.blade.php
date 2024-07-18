@@ -99,7 +99,7 @@
 					</li>
 				@endcanany
 
-				@canany(['view-tag','view-post','view-event'])
+				@canany(['view-loan'])
 					<li class="menu-label">MAIN</li>
 
 					<li>
@@ -111,32 +111,39 @@
 						</a>
 					</li>
 
-					<li>
-						<a href="{{ route('admin.pendingVerification') }}">
-							<div class="parent-icon text-verified">
-                                <i class="bi bi-list-check"></i>
-							</div>
-							<div class="menu-title">Pending Verification</div>
-						</a>
-					</li>
+					@canany(['verify-loan'])
+						<li>
+							<a href="{{ route('admin.pendingVerification') }}">
+								<div class="parent-icon text-verified">
+									<i class="bi bi-list-check"></i>
+								</div>
+								<div class="menu-title">Pending Verification</div>
+							</a>
+						</li>
+					@endcanany
 
-					<li>
-						<a href="{{ route('admin.pendingRecommendation') }}">
-							<div class="parent-icon text-recommend">
-                                <i class="bi bi-check"></i>
-							</div>
-							<div class="menu-title">Pending Recommendation</div>
-						</a>
-					</li>
+					@canany(['recommend-loan'])
+						<li>
+							<a href="{{ route('admin.pendingRecommendation') }}">
+								<div class="parent-icon text-recommend">
+									<i class="bi bi-check"></i>
+								</div>
+								<div class="menu-title">Pending Recommendation</div>
+							</a>
+						</li>
+					@endcanany
 
-					<li>
-						<a href="{{ route('admin.pendingApproval') }}">
-							<div class="parent-icon text-approved">
-                                <i class="bi bi-check-all"></i>
-							</div>
-							<div class="menu-title">Pending Approval</div>
-						</a>
-					</li>
+					@canany(['approve-loan'])
+
+						<li>
+							<a href="{{ route('admin.pendingApproval') }}">
+								<div class="parent-icon text-approved">
+									<i class="bi bi-check-all"></i>
+								</div>
+								<div class="menu-title">Pending Approval</div>
+							</a>
+						</li>
+					@endcanany
 
 					<li>
 						<a href="{{ route('admin.loanHistory') }}">
@@ -223,13 +230,13 @@
 						</li>
 					</ul>
 				</li> --}}
-				<li>
+				{{-- <li>
 					<a href="user-profile.html">
 						<div class="parent-icon"><i class="bx bx-user-circle"></i>
 						</div>
 						<div class="menu-title">User Profile</div>
 					</a>
-				</li>
+				</li> --}}
 
 				{{-- <li>
 					<a href="https://themeforest.net/user/codervent" target="_blank">
@@ -249,19 +256,19 @@
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
 
-					  <div class="search-bar d-lg-block d-none" data-bs-toggle="modal" data-bs-target="#SearchModal">
+					  {{-- <div class="search-bar d-lg-block d-none" data-bs-toggle="modal" data-bs-target="#SearchModal">
 					     <a href="avascript:;" class="btn d-flex align-items-center"><i class='bx bx-search'></i>Search</a>
-					  </div>
+					  </div> --}}
 
 					  <div class="top-menu ms-auto">
 						<ul class="navbar-nav align-items-center gap-1">
-							<li class="nav-item mobile-search-icon d-flex d-lg-none" data-bs-toggle="modal" data-bs-target="#SearchModal">
+							{{-- <li class="nav-item mobile-search-icon d-flex d-lg-none" data-bs-toggle="modal" data-bs-target="#SearchModal">
 								<a class="nav-link" href="avascript:;"><i class='bx bx-search'></i>
 								</a>
-							</li>
+							</li> --}}
 							<li class="nav-item dropdown dropdown-laungauge d-none d-sm-flex">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="assets/images/county/02.png" width="22" alt="">
-								</a>
+								{{-- <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="avascript:;" data-bs-toggle="dropdown"><img src="assets/images/county/02.png" width="22" alt="">
+								</a> --}}
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li><a class="dropdown-item d-flex align-items-center py-2" href="javascript:;"><img src="assets/images/county/01.png" width="20" alt=""><span class="ms-2">English</span></a>
 									</li>
@@ -514,9 +521,9 @@
 							</li>
 
 							<li class="nav-item dropdown dropdown-large">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown"><span class="alert-count">7</span>
+								{{-- <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown"><span class="alert-count">7</span>
 									<i class='bx bx-bell'></i>
-								</a>
+								</a> --}}
 								<div class="dropdown-menu dropdown-menu-end">
 									<a href="javascript:;">
 										<div class="msg-header">
@@ -631,24 +638,24 @@
 											</div>
 										</a>
 									</div>
-									<a href="javascript:;">
+									{{-- <a href="javascript:;">
 										<div class="text-center msg-footer">
 											<button class="btn btn-primary w-100">View All Notifications</button>
 										</div>
-									</a>
+									</a> --}}
 								</div>
 							</li>
 							<li class="nav-item dropdown dropdown-large">
-								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
+								{{-- <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
 									<i class='bx bx-shopping-bag'></i>
-								</a>
+								</a> --}}
 								<div class="dropdown-menu dropdown-menu-end">
-									<a href="javascript:;">
+									{{-- <a href="javascript:;">
 										<div class="msg-header">
 											<p class="msg-header-title">My Cart</p>
 											<p class="msg-header-badge">10 Items</p>
 										</div>
-									</a>
+									</a> --}}
 									<div class="header-message-list">
 										<a class="dropdown-item" href="javascript:;">
 											<div class="d-flex align-items-center gap-3">
@@ -813,7 +820,7 @@
 											</div>
 										</a>
 									</div>
-									<a href="javascript:;">
+									{{-- <a href="javascript:;">
 										<div class="text-center msg-footer">
 											<div class="d-flex align-items-center justify-content-between mb-3">
 												<h5 class="mb-0">Total</h5>
@@ -821,16 +828,16 @@
 											</div>
 											<button class="btn btn-primary w-100">Checkout</button>
 										</div>
-									</a>
+									</a> --}}
 								</div>
 							</li>
 						</ul>
 					</div>
 					<div class="user-box dropdown px-3">
 						<a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="{{asset('assets/images/avatars/passport1.jpeg')}}" class="user-img" alt="user avatar">
+							<img src="{{asset('assets/images/avatars/user.png')}}" class="user-img" alt="user avatar">
 							<div class="user-info">
-								<p class="user-name mb-0">Cathbert Busiku</p>
+								<p class="user-name mb-0">{{ auth()->user()->name }}</p>
 								<p class="designattion mb-0">Admin</p>
 							</div>
 						</a>

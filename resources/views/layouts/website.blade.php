@@ -13,19 +13,9 @@
 		<title>Kamulll Group</title>
 
 		<!-- Favicon -->
-		<link rel="apple-touch-icon" sizes="57x57" href="images/fav-icon/apple-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="images/fav-icon/apple-icon-60x60.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/fav-icon/apple-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="76x76" href="images/fav-icon/apple-icon-76x76.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/fav-icon/apple-icon-114x114.png">
-		<link rel="apple-touch-icon" sizes="120x120" href="images/fav-icon/apple-icon-120x120.png">
-		<link rel="apple-touch-icon" sizes="144x144" href="images/fav-icon/apple-icon-144x144.png">
-		<link rel="apple-touch-icon" sizes="152x152" href="images/fav-icon/apple-icon-152x152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="images/fav-icon/apple-icon-180x180.png">
-		<link rel="icon" type="image/png" sizes="192x192"  href="images/logo/KAMULLL02_header.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="images/logo/KAMULLL02_header.png">
-		<link rel="icon" type="image/png" sizes="96x96" href="images/logo/KAMULLL02_header.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="images/logo/KAMULLL02_header.png">
+		<link rel="apple-touch-icon" sizes="180x180"  href="{{asset('assets/website/images/favicon/apple-touch-icon.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/website/images/favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/website/images/favicon/favicon-16x16.png')}}">
 
 
 
@@ -85,7 +75,7 @@
         <div class="main_menu">
         	<div class="container">
         		<div class="logo float_left">
-        			<a href="index.html"><img  src="{{asset('assets/website/images/logo/KAMULLL02_header.png')}}"  alt="logo" class="img-responsive"></a>
+        			<a href="/"><img  src="{{asset('assets/website/images/logo/KAMULLL02_header.png')}}"  alt="logo" class="img-responsive"></a>
         		</div> <!-- End of .logo -->
 
         		<nav class="navbar navbar-default float_left">
@@ -123,12 +113,9 @@
 
 				<div class="nav_right_area float_right">
 					<div class="search_option float_left">
-				   		<button class="search tran3s dropdown-toggle" id="searchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search" aria-hidden="true"></i></button>
-				   		<form action="#" class="p_color_bg dropdown-menu" aria-labelledby="searchDropdown">
-				   			<input type="text" placeholder="Search here.....">
-				   			<button class="s_color_bg p_color"><i class="fa fa-search" aria-hidden="true"></i></button>
-				   		</form>
-				   </div>
+						<a href="{{ route('login') }}"  type="button" class="btn btn-primary">Sign in</a>
+						<a  href="{{ route('register') }}" type="button" class="btn btn-success">Sign up</a>
+					</div>
 
 				   
 				   <div class="clear_fix"></div>
