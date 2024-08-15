@@ -34,6 +34,22 @@
                 </div>
             </div>
             <div class="col">
+                <div class="card radius-10 border-start border-0 border-4 border-recommend">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <p class="mb-0 text-secondary recommend-text">Pending Requests</p>
+                                <h4 class="my-1 text-recommend">{{ $pendingRequests }}</h4>
+                                {{-- <p class="mb-0 font-13">view</p> --}}
+                            </div>
+                            <div class="widgets-icons-2 rounded-circle bg-gradient-moonlit text-white ms-auto">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
                 <div class="card radius-10 border-start border-0 border-4 border-approved">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
@@ -50,22 +66,7 @@
                 </div>
             </div>
 
-            <div class="col">
-                <div class="card radius-10 border-start border-0 border-4 border-recommend">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <p class="mb-0 text-secondary recommend-text">Recommeded Loans</p>
-                                <h4 class="my-1 text-recommend">{{ $recommendedLoans }}</h4>
-                                {{-- <p class="mb-0 font-13">view</p> --}}
-                            </div>
-                            <div class="widgets-icons-2 rounded-circle bg-gradient-moonlit text-white ms-auto">
-                                <i class="bi bi-check"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
 
             <div class="col">
                 <div class="card radius-10 border-start border-0 border-4 border-verified">

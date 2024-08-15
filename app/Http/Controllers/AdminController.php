@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BankDetail;
 use App\Models\Guarantor;
 use App\Models\Loan;
+use App\Models\ServiceRequest;
 use App\Models\User;
 use App\Models\LoanStatuses;
 use App\Models\MonthlyIncome;
@@ -48,6 +49,7 @@ class AdminController extends Controller
         $collateral_loans = Loan::where('loan_type', 'collateral_related')->count();
         $payslips_loans = Loan::where('loan_type', 'payslip_related')->count();
         $business_loans = Loan::where('loan_type', 'business_related')->count();
+        $pendingRequests = ServiceRequest::where('status', 'PENDING')->count();
 
         // Get the current date and the date one month ago
         $endDate = Carbon::now();
@@ -128,7 +130,8 @@ class AdminController extends Controller
             'totalClients',
             'business_loans',
             'payslips_loans',
-            'paidLoans'
+            'paidLoans',
+            'pendingRequests'
         ));
     }
     
@@ -278,8 +281,8 @@ class AdminController extends Controller
 
 
     public function pendingApproval()
-    {
-        $pendingLoans = Loan::where('status', 'RECOMMENDED')->get();
+    { 
+        $pendingLoans = Loan::where('status', 'VERIFIED')->get();
         return view('admin.pending-loan-approval', compact('pendingLoans'));
     }
 

@@ -4,6 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\serviceTypesController;
+use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +34,10 @@ Route::get('/services/immigration', function () { return view('website.immigrati
 Route::get('/services/customs-and-clearing', function () { return view('website.customs_and_clearing_services');});
 Route::get('/services/cash-advance-and-loan', function () { return view('website.cash_advance_and_loan_services');});
 Route::get('/contact', function () { return view('website.contact');});
+
+Route::get('/client/service/service-request',  [ServiceRequestController::class, 'index'])->name('client.serviceRequest');
+Route::post('/client/service/request/store',  [ServiceRequestController::class, 'store'])->name('client.storeServiceRequest');
+
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -116,6 +123,24 @@ Route::put('/admin/loans/{loan}/payment',  [AdminController::class, 'paymentStor
 Route::get('/admin/loans/history',  [AdminController::class, 'loanHistory'])->middleware(['auth', 'verified'])->name('admin.loanHistory');
 Route::get('/admin/loans/active',  [AdminController::class, 'activeLoans'])->middleware(['auth', 'verified'])->name('admin.activeLoans');
 Route::get('/admin/loans/{loan}/view',  [AdminController::class, 'specificLoan'])->middleware(['auth', 'verified'])->name('admin.specificLoan');
+
+Route::get('/admin/service-types',  [serviceTypesController::class, 'index'])->middleware(['auth', 'verified'])->name('serviceTypes.index');
+Route::get('/admin/service-types/add',  [serviceTypesController::class, 'addServiceTypes'])->middleware(['auth', 'verified'])->name('serviceTypes.add');
+Route::post('/admin/service-types/store',  [serviceTypesController::class, 'storeServiceTypes'])->middleware(['auth', 'verified'])->name('serviceTypes.store');
+Route::get('/admin/service-types/{serviceType}/edit',  [serviceTypesController::class, 'editServiceTypes'])->middleware(['auth', 'verified'])->name('serviceTypes.edit');
+Route::put('/admin/service-types/{serviceType}/update',  [serviceTypesController::class, 'updateServiceTypes'])->middleware(['auth', 'verified'])->name('serviceTypes.update');
+
+Route::get('/admin/services',  [ServicesController::class, 'index'])->middleware(['auth', 'verified'])->name('services.index');
+Route::get('/admin/services/add',  [ServicesController::class, 'addServices'])->middleware(['auth', 'verified'])->name('services.add');
+Route::post('/admin/services/store',  [ServicesController::class, 'storeServices'])->middleware(['auth', 'verified'])->name('services.store');
+Route::get('/admin/services/{service}/edit',  [ServicesController::class, 'editServices'])->middleware(['auth', 'verified'])->name('services.edit');
+Route::put('/admin/services/{service}/update',  [ServicesController::class, 'updateServices'])->middleware(['auth', 'verified'])->name('services.update');
+
+Route::get('/admin/serviceRequests/view',  [ServiceRequestController::class, 'viewRequests'])->middleware(['auth', 'verified'])->name('requests.view');
+Route::get('/admin/serviceRequests/history',  [ServiceRequestController::class, 'requestsHistory'])->middleware(['auth', 'verified'])->name('requests.history');
+Route::put('/admin/serviceRequests/{serviceRequest}/completed',  [ServiceRequestController::class, 'markCompleted'])->name('requests.markCompleted');
+// Route::get('/admin/services/{service}/edit',  [ServicesController::class, 'editServices'])->middleware(['auth', 'verified'])->name('services.edit');
+// Route::put('/admin/services/{service}/update',  [ServicesController::class, 'updateServices'])->middleware(['auth', 'verified'])->name('services.update');
 
 
 Route::resources([

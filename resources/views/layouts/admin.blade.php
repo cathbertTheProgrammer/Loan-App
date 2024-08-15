@@ -99,60 +99,77 @@
 					</li>
 				@endcanany
 
+				@canany(['view-role', 'view-permission', 'view-user'])
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bi bi-snow3"></i>
+						</div>
+						<div class="menu-title">Services</div>
+					</a>
+					<ul>
+
+						@canany(['create-role', 'edit-role', 'delete-role'])
+							<li><a  href="{{ route('serviceTypes.index') }}"><i class='bx bx-radio-circle'></i> Service Types</a></li>
+						@endcanany
+
+						@canany(['create-role', 'edit-role', 'delete-role'])
+							<li><a  href="{{ route('services.index') }}"><i class='bx bx-radio-circle'></i> Services</a></li>
+						@endcanany
+						
+
+
+					</ul>
+				</li>
+			@endcanany
+
 				@canany(['view-loan'])
 					<li class="menu-label">MAIN</li>
 
 					<li>
-						<a href="{{ route('admin.activeLoans') }}">
-							<div class="parent-icon text-success">
-                                <i class="bi bi-toggle-on"></i>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class="bi bi-arrow-down-circle"></i>
 							</div>
-							<div class="menu-title">Active Loans</div>
+							<div class="menu-title">Service Requests</div>
 						</a>
+						<ul>
+							@canany(['create-user', 'edit-user', 'delete-user'])
+								<li><a  href="{{ route('requests.view') }}"><i class='bx bx-radio-circle'></i>Pending Requests</a></li>
+							@endcanany
+
+							@canany(['create-role', 'edit-role', 'delete-role'])
+								<li><a  href="{{  route('requests.history') }}"><i class='bx bx-radio-circle'></i>Requests History</a></li>
+							@endcanany
+
+						</ul>
 					</li>
 
-					@canany(['verify-loan'])
-						<li>
-							<a href="{{ route('admin.pendingVerification') }}">
-								<div class="parent-icon text-verified">
-									<i class="bi bi-list-check"></i>
-								</div>
-								<div class="menu-title">Pending Verification</div>
-							</a>
-						</li>
-					@endcanany
-
-					@canany(['recommend-loan'])
-						<li>
-							<a href="{{ route('admin.pendingRecommendation') }}">
-								<div class="parent-icon text-recommend">
-									<i class="bi bi-check"></i>
-								</div>
-								<div class="menu-title">Pending Recommendation</div>
-							</a>
-						</li>
-					@endcanany
-
-					@canany(['approve-loan'])
-
-						<li>
-							<a href="{{ route('admin.pendingApproval') }}">
-								<div class="parent-icon text-approved">
-									<i class="bi bi-check-all"></i>
-								</div>
-								<div class="menu-title">Pending Approval</div>
-							</a>
-						</li>
-					@endcanany
 
 					<li>
-						<a href="{{ route('admin.loanHistory') }}">
-							<div class="parent-icon  text-danger">
-								<i class="bi bi-hourglass-top"></i>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class="bi bi-cash-coin"></i>
 							</div>
-							<div class="menu-title">Loan History</div>
+							<div class="menu-title">Loans</div>
 						</a>
+						<ul>
+							@canany(['create-user', 'edit-user', 'delete-user'])
+								<li><a  href="{{ route('admin.activeLoans') }}"> <i class="bi bi-toggle-on text-success"></i>Active Loans</a></li>
+							@endcanany
+
+							@canany(['create-role', 'edit-role', 'delete-role'])
+								<li><a  href="{{  route('admin.pendingVerification') }}"><i class="bi bi-arrow-repeat text-approved"></i>Pending Verification</a></li>
+							@endcanany
+							@canany(['create-user', 'edit-user', 'delete-user'])
+								<li><a  href="{{  route('admin.pendingApproval') }}"><i class="bi bi-arrow-clockwise text-approved"></i>Pending Approval</a></li>
+							@endcanany
+
+							@canany(['create-role', 'edit-role', 'delete-role'])
+								<li><a  href="{{  route('admin.loanHistory') }}"><i class="bi bi-hourglass-top text-danger"></i>Loan History</a></li>
+							@endcanany
+
+						</ul>
 					</li>
+					
 				@endcanany
 
 				@canany(['view-product','view-category', 'view-brand'])

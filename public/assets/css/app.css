@@ -5405,3 +5405,10 @@ input::placeholder {
 .recommend-text{
     font-size: 12px !important;
 }
+
+.service-list li {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    
+}

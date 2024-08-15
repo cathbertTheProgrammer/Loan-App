@@ -33,7 +33,7 @@
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/html5shiv.js"></script>
 		<![endif]-->
-
+			
 
 	</head>
 	<body class="home">
@@ -70,7 +70,7 @@
 
 
 
-        <!-- Menu ___________________________________ -->
+        <!-- Menu -->
 
         <div class="main_menu">
         	<div class="container">
@@ -102,8 +102,9 @@
 				       			<li><a href="/services/customs-and-clearing">Customs and Clearing Services</a></li>
 				       			<li><a href="/services/cash-advance-and-loan">Cash Advance and Loan Services</a></li>
 				       			
-				       		</ul> <!-- End of .sub-menu -->
+				       		</ul> 
 				       </li>
+					   <li><a href="{{ route('client.serviceRequest') }}" >Service Request</a></li>
 				       
 				       <li><a href="/contact">Contact</a></li>
 						<li><a href="{{ route('login') }}" >Apply for Loan</a></li>
@@ -113,8 +114,8 @@
 
 				<div class="nav_right_area float_right">
 					<div class="search_option float_left">
-						<a href="{{ route('login') }}"  type="button" class="btn btn-primary">Sign in</a>
-						<a  href="{{ route('register') }}" type="button" class="btn btn-success">Sign up</a>
+						<a href="{{ route('login') }}"  type="button" class="btn btn-primary btn-small">Sign in</a>
+						<a  href="{{ route('register') }}" type="button" class="btn btn-success btn-sm">Sign up</a>
 					</div>
 
 				   
